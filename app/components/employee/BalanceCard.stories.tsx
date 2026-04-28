@@ -72,3 +72,18 @@ export const Error: Story = {
     },
   },
 }
+
+// Briefing requirement: "balance-refreshed-mid-session". Anniversary bonus or
+// external HR adjustment lands on the next poll while the user has the page
+// open. The card gets a brief "+N days" badge so the change is announced
+// rather than silently overwritten (TRD §6).
+export const BalanceRefreshedMidSession: Story = {
+  args: {
+    state: {
+      kind: 'balance-refreshed',
+      balance: { ...sampleCell, daysAvailable: 11 },
+      locationName: 'Headquarters',
+      previousDays: 10,
+    },
+  },
+}

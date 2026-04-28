@@ -23,6 +23,14 @@ export type BalanceCardState =
       reason: string
     }
   | { kind: 'error'; locationName: string; message: string }
+  // Balance changed under us mid-session (anniversary bonus or external HR
+  // adjustment). Visual cue with the delta vs. the previously-cached value.
+  | {
+      kind: 'balance-refreshed'
+      balance: BalanceCell
+      locationName: string
+      previousDays: number
+    }
 
 function DaysLabel({ days }: { days: number }) {
   return (
@@ -137,5 +145,30 @@ export function BalanceCard({ state }: { state: BalanceCardState }) {
           </CardContent>
         </Card>
       )
+
+    case 'balance-refreshed': {
+      const delta = state.balance.daysAvailable - state.previousDays
+      return (
+        <Card
+          className="border-green-500/40"
+          data-testid="balance-card-refreshed"
+          title={`Was ${state.previousDays} day${state.previousDays === 1 ? '' : 's'}; refreshed to ${state.balance.daysAvailable}`}
+        >
+          <CardHeader className="flex flex-row items-center justify-between gap-2">
+            <CardTitle>{state.locationName}</CardTitle>
+            <span className="rounded bg-green-500/10 px-1.5 py-0.5 text-xs font-medium text-green-700 dark:text-green-400">
+              {delta > 0 ? '+' : ''}
+              {delta} day{Math.abs(delta) === 1 ? '' : 's'}
+            </span>
+          </CardHeader>
+          <CardContent>
+            <DaysLabel days={state.balance.daysAvailable} />
+            <p className="mt-1 text-xs text-muted-foreground">
+              Updated since you opened the page
+            </p>
+          </CardContent>
+        </Card>
+      )
+    }
   }
 }
