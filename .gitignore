@@ -1,0 +1,18 @@
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Repo-wide build output and logs (the Next.js project also has its own
+# .gitignore inside app/ which covers node_modules, .next, etc.)
+*.log
+.env
+.env.local
+.env.*.local
+
+# Vercel
+.vercel/
+
+# Claude Code local-only permission cache (per-machine, never committed)
+.claude/settings.local.json
