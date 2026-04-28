@@ -5,7 +5,7 @@ A take-home demonstrating how to build an employee/manager time-off UI on top of
 ## Live links
 
 - **App:** https://time-off-frontend-psi.vercel.app/  (`/` redirects to `/employee`; `/manager` is the approver surface)
-- **Storybook:** https://time-off-storybook-8oo946snx-fernando-simoes-projects-a3a9d0e4.vercel.app/
+- **Storybook:** https://time-off-storybook.vercel.app/
 - **GitHub:** https://github.com/fernandosimoes/time-off-frontend
 
 ## Where the engineering thinking lives
